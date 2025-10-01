@@ -37,10 +37,10 @@
 ---
 ## 🗂 Estrutura do Projeto
 ProjetoX/
-├── ProjetoX.ps1        # Script principal do organizador de imagens EXIF
-├── LICENSE             # Arquivo da Licença MIT
-├── README.md           # Documentação e instruções do projeto
-└── CHANGELOG.md        # Histórico de versões e alterações
+[├── ProjetoX.ps1       ] (# Script principal do organizador de imagens EXIF)
+[├── LICENSE            ] (# Arquivo da Licença MIT)
+[├── README.md          ] (# Documentação e instruções do projeto)
+[└── CHANGELOG.md       ] (# Histórico de versões e alterações)
 
 ---
 ## Descrição dos arquivos:
@@ -65,7 +65,9 @@ cd ProjetoX
 
 No PowerShell, rode:
 
-```powershell** Set-ExecutionPolicy RemoteSigned -Scope CurrentUser```
+```bash
+powershell Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 
 Isso permite que o script seja executado localmente sem restrições.
 
@@ -73,7 +75,9 @@ Isso permite que o script seja executado localmente sem restrições.
 
 No terminal, execute o script principal:
 
-```powershell -ExecutionPolicy Bypass -File .\ProjetoX.ps1```
+```bash
+powershell -ExecutionPolicy Bypass -File .\ProjetoX.ps1
+```
 
 4. Passos dentro do programa
     1. Selecionar a pasta de origem com as imagens que deseja organizar.
