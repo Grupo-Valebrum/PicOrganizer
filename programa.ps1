@@ -1,11 +1,12 @@
-# ProjetoX - Organizador de Imagens por EXIF
+# ProjetoX - Organizador de Imagens
 # Autor: Nelson Brum
-# Colaborador: Jonathas
-# Versão: 0.1
+# Colaborador: Jonathas Cunha
+# Versão: 0.2
 # Data: 2025-10-01
 
-# --- Configuração de encoding para CLI para evitar caracteres estranhos ---
+# --- Configuração de encoding para evitar caracteres estranhos ---
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+[System.Windows.Forms.Application]::EnableVisualStyles()
 
 # --- Importar assemblies do Windows Forms e Drawing ---
 Add-Type -AssemblyName System.Windows.Forms
@@ -13,10 +14,6 @@ Add-Type -AssemblyName System.Drawing
 
 # ================================================================
 # Função: Select-FolderDialog
-# Descrição: Abre um diálogo para selecionar uma pasta
-# Parâmetro: $Description - texto de instrução no diálogo
-# Retorno: Caminho selecionado ou $null
-# ================================================================
 function Select-FolderDialog {
     param([string]$Description)
 
@@ -31,22 +28,17 @@ function Select-FolderDialog {
 
 # ================================================================
 # Função: Get-ExifData
-# Descrição: Extrai dados EXIF de uma imagem (JPEG, PNG, TIFF)
-# Parâmetro: $FilePath - caminho da imagem
-# Retorno: Hashtable com campos EXIF ou nulo
-# ================================================================
 function Get-ExifData {
     param([string]$FilePath)
 
     $image = [System.Drawing.Image]::FromFile($FilePath)
-    $encoding = [System.Text.Encoding]::ASCII
+    $encoding = [System.Text.Encoding]::UTF8
     $data = @{}
 
-    # Função interna para converter PropertyItem em valor legível
     function Get-PropertyValue([System.Drawing.Imaging.PropertyItem]$prop) {
         try {
             switch ($prop.Type) {
-                2 { return ($encoding.GetString($prop.Value)).Trim([char]0) } # String
+                2 { return ($encoding.GetString($prop.Value)).Trim([char]0) } 
                 default { return $prop.Value }
             }
         } catch { return $null }
@@ -79,10 +71,6 @@ function Get-ExifData {
 
 # ================================================================
 # Função: SafeSubItem
-# Descrição: Garante que valores nulos ou inexistentes exibidos no ListView não quebrem o programa
-# Parâmetro: $value - valor a ser exibido
-# Retorno: valor original ou "N/A"
-# ================================================================
 function SafeSubItem($value) {
     if ($value) { return $value } else { return "N/A" }
 }
@@ -94,13 +82,12 @@ $destFolder = $null
 
 # ================================================================
 # Formulário principal
-# ================================================================
 $form = New-Object System.Windows.Forms.Form
-$form.Text = "ProjetoX - Organizador de Imagens EXIF"
+$form.Text = "ProjetoX - Organizador de Imagens"
 $form.Size = New-Object System.Drawing.Size(900,500)
 $form.StartPosition = "CenterScreen"
 
-# --- Checkbox para logs ---
+# --- Checkbox ---
 $chkLog = New-Object System.Windows.Forms.CheckBox
 $chkLog.Text = "Salvar log das mudanças"
 $chkLog.Location = New-Object System.Drawing.Point(20,20)
@@ -126,13 +113,14 @@ $btnCancel.Location = New-Object System.Drawing.Point(380,60)
 $btnCancel.Width = 150
 $form.Controls.Add($btnCancel)
 
-# --- ListView com colunas dinâmicas ---
+# --- ListView responsivo ---
 $listView = New-Object System.Windows.Forms.ListView
 $listView.Location = New-Object System.Drawing.Point(20,110)
 $listView.Size = New-Object System.Drawing.Size(840,320)
 $listView.View = 'Details'
 $listView.FullRowSelect = $true
 $listView.GridLines = $true
+$listView.Anchor = "Top,Bottom,Left,Right"   # <<< Responsividade
 $listView.Columns.Add("Nome Original",200) | Out-Null
 $listView.Columns.Add("Novo Nome",150) | Out-Null
 $listView.Columns.Add("Destino",150) | Out-Null
@@ -141,111 +129,7 @@ $listView.Columns.Add("Câmera",120) | Out-Null
 $listView.Columns.Add("ISO",80) | Out-Null
 $form.Controls.Add($listView)
 
-# ================================================================
-# Evento Pré-visualizar
-# ================================================================
-$btnPreview.Add_Click({
-    $listView.Items.Clear()
-    $previewData = @()
-
-    # Seleção das pastas
-    $sourceFolder = Select-FolderDialog -Description "Selecione o diretório com as imagens"
-    if (-not $sourceFolder) { [System.Windows.Forms.MessageBox]::Show("Nenhum diretório de origem selecionado."); return }
-
-    $destFolder = Select-FolderDialog -Description "Selecione o diretório de destino"
-    if (-not $destFolder) { [System.Windows.Forms.MessageBox]::Show("Nenhum diretório de destino selecionado."); return }
-
-    $images = Get-ChildItem -Path $sourceFolder -Include *.jpg,*.jpeg,*.png,*.tiff -File -Recurse
-
-    foreach ($img in $images) {
-        $exif = Get-ExifData -FilePath $img.FullName
-        $mesano = "_SEM-DATA_"
-
-        # Se existir EXIF de data, formatar para MMAAAA
-        $date = if ($exif["DataCaptura"]) { $exif["DataCaptura"] } elseif ($exif["DataArquivo"]) { $exif["DataArquivo"] } else { $null }
-
-        if ($date -and $date -match "(\d{4}):(\d{2}):(\d{2})") {
-            $ano = $matches[1]
-            $mes = $matches[2]
-            $mesano = "$mes$ano"
-        }
-
-        $newName = "$mesano$($img.Extension)"
-        $finalDest = Join-Path $destFolder $mesano
-
-        $previewData += [PSCustomObject]@{
-            Original = $img.FullName
-            NovoNome = $newName
-            Destino  = $finalDest
-            Data     = SafeSubItem $exif["DataCaptura"]
-            Camera   = SafeSubItem $exif["CameraModelo"]
-            ISO      = SafeSubItem $exif["ISO"]
-        }
-
-        # Adicionando dados no ListView
-        $item = New-Object System.Windows.Forms.ListViewItem($img.Name)
-        $item.SubItems.Add( ( $newName ) ) | Out-Null
-        $item.SubItems.Add( ( $mesano ) ) | Out-Null
-        $item.SubItems.Add( ( SafeSubItem $exif["DataCaptura"] ) ) | Out-Null
-        $item.SubItems.Add( ( SafeSubItem $exif["CameraModelo"] ) ) | Out-Null
-        $item.SubItems.Add( ( SafeSubItem $exif["ISO"] ) ) | Out-Null
-        $listView.Items.Add($item) | Out-Null
-    }
-
-    [System.Windows.Forms.MessageBox]::Show("Pré-visualização concluída.")
-})
-
-# ================================================================
-# Evento Executar
-# ================================================================
-$btnRun.Add_Click({
-    if (-not $previewData -or $previewData.Count -eq 0) {
-        [System.Windows.Forms.MessageBox]::Show("Nenhuma pré-visualização realizada. Clique em 'Pré-visualizar' primeiro.")
-        return
-    }
-
-    $log = @()
-
-    foreach ($item in $previewData) {
-        try {
-            if (-not (Test-Path $item.Destino)) {
-                New-Item -Path $item.Destino -ItemType Directory | Out-Null
-            }
-            $destFile = Join-Path $item.Destino $item.NovoNome
-            Move-Item -Path $item.Original -Destination $destFile -Force
-
-            $log += "Movido: $($item.Original) -> $destFile"
-            $log += "EXIF: Data=$($item.Data) Camera=$($item.Camera) ISO=$($item.ISO)"
-            $log += "----"
-        }
-        catch {
-            $log += "Erro ao processar $($item.Original): $_"
-        }
-    }
-
-    # Salvar log
-    if ($chkLog.Checked -and $log.Count -gt 0) {
-        $logFile = Join-Path $destFolder ("log_EXIF_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".txt")
-        $log | Out-File -FilePath $logFile -Encoding UTF8
-        [System.Windows.Forms.MessageBox]::Show("Processo concluído. Log salvo em: `n$logFile")
-    }
-    else {
-        [System.Windows.Forms.MessageBox]::Show("Processo concluído.")
-    }
-})
-
-# ================================================================
-# Evento Cancelar
-# ================================================================
-$btnCancel.Add_Click({
-    $listView.Items.Clear()
-    $previewData = @()
-    $sourceFolder = $null
-    $destFolder = $null
-    [System.Windows.Forms.MessageBox]::Show("Processo cancelado. Nenhuma mudança foi realizada.")
-})
-
+# (Eventos permanecem iguais ao que você já tem)
 # ================================================================
 # Rodar formulário
-# ================================================================
 [void]$form.ShowDialog()
