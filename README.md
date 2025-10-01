@@ -36,11 +36,12 @@
 
 ---
 ## 🗂 Estrutura do Projeto
-ProjetoX/
-- ProjetoX.ps1        # Script principal do organizador de imagens EXIF
-- LICENSE             # Arquivo da Licença MIT
-- README.md           # Documentação e instruções do projeto
-- CHANGELOG.md        # Histórico de versões e alterações
+|ProjetoX|/|
+|--------|-|
+|ProjetoX.ps1  |      # Script principal do organizador de imagens EXIF |
+|LICENSE       |      # Arquivo da Licença MIT  |
+|README.md     |      # Documentação e instruções do projeto    |
+|CHANGELOG.md  |      # Histórico de versões e alterações   |
 
 ---
 ## Descrição dos arquivos:
