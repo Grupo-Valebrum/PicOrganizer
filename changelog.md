@@ -1,37 +1,49 @@
 # Changelog
 
-Todos os notable changes to this project will be documented in this file.
+Todos os notable changes to this project serão documentados neste arquivo.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Formato baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) e 
+seguindo [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-## [0.0.1] – 2025-10-01
-### Adicionado
-- Criação do script inicial `programa.ps1` (antes ProjetoX) com interface gráfica em Windows Forms.
-- Função para selecionar diretórios de origem e destino.
-- Leitura de metadados EXIF (data de captura, câmera, ISO, exposição, abertura).
-- Pré-visualização das imagens em um ListView com colunas: Nome Original, Novo Nome, Destino, Data, Câmera, ISO.
-- Botões: Pré-visualizar, Executar Mudanças e Cancelar.
-- Geração de logs opcionais das alterações realizadas.
-- Renomeação de arquivos baseada no padrão `MMAAAA` para arquivos com EXIF.
-- Tratamento de imagens sem dados EXIF, nomeadas como `_SEM-DATA_`.
-- Ajuste de arquivos que já possuem data no nome no formato `AAAA-MM-DD`.
-- Função `SafeSubItem` para evitar falhas ao exibir valores nulos no ListView.
-
+## [0.3.1] – 2025-10-01
 ### Alterado
-- Atualização do título da janela para: "Programa - Organizador de Imagens".
-- ListView ajustado para tamanho dinâmico (responde ao redimensionamento da janela).
-- Corrigidos problemas de caracteres especiais e acentuação na interface.
-- Pré-visualização atualizada para exibir apenas a data formatada (MMAAAA) sem repetir o nome do arquivo.
+- Renomeação do script de `ProjetoX` para `programa.ps1`.
+- Ajuste no título do programa: "Programa - Organizador de Imagens".
+- ListView ajustado para tamanho dinâmico conforme redimensionamento da janela.
+- Correção de caracteres especiais e acentuação na interface.
+- Ajuste no botão Cancelar: agora limpa preview sem fechar o programa.
+- Pré-visualização exibindo apenas data MMAAAA sem repetir o nome do arquivo.
 
+## [0.3.0] – 2025-09-30
+### Adicionado
+- Suporte a arquivos que possuem data no nome no formato `AAAA-MM-DD` para renomeação automática.
+- ListView exibindo colunas: Nome Original, Novo Nome, Destino, Data, Câmera, ISO.
+- Função `SafeSubItem` para evitar valores nulos quebrando o programa.
+- Botões de execução: Pré-visualizar, Executar Mudanças, Cancelar.
+- Logs opcionais detalhados das operações.
+
+## [0.2.0] – 2025-09-25
 ### Corrigido
-- Botão Cancelar funcionando corretamente, limpa a lista e reseta variáveis sem fechar o programa.
-- ListView com cabeçalhos visíveis e alinhamento correto.
-- Mensagens de erro no PowerShell corrigidas (variáveis e concatenação).
+- Pré-visualização agora funciona corretamente, carregando os dados de EXIF.
+- Tratamento de imagens sem dados EXIF, renomeadas para `_SEM-DATA_`.
+- Correção de problemas de codificação no PowerShell.
 
-### Observações
-- Encoding do console ajustado para UTF-8 para evitar caracteres corrompidos.
-- Compatibilidade com imagens `.jpg`, `.jpeg`, `.png` e `.tiff`.
-- Todas as mudanças implementadas visam escalabilidade e manutenção futura do programa.
+## [0.1.0] – 2025-09-20
+### Adicionado
+- Primeira versão funcional do ProjetoX com interface gráfica.
+- Seleção de diretórios de origem e destino.
+- Leitura de metadados EXIF básicos: data, câmera e ISO.
+- Movimentação de arquivos para pastas `MMAAAA`.
+
+## [0.0.2] – 2025-09-18
+### Adicionado
+- Pré-visualização das alterações antes de executar.
+- Log detalhado opcional das operações.
+
+## [0.0.1] – 2025-09-15
+### Inicial
+- Criação inicial do script com função de renomear imagens por EXIF.
+- Suporte a arquivos `.jpg` e `.jpeg`.
+

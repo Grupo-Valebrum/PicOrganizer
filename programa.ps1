@@ -44,7 +44,7 @@ function Select-FolderDialog {
 # ------------------------------------------------
 # Get-ExifData
 # Uso: extrai metadados EXIF básicos de uma imagem
-# Observação: not all images have EXIF; tratamos isso
+# Observação: nem todas imagens tem metadados EXIF; tratamos isso
 # Entradas: $FilePath - caminho do arquivo de imagem
 # Saída: hashtable com keys CameraFabricante, CameraModelo, DataCaptura, ISO, TempoExposicao, Abertura
 # ------------------------------------------------
