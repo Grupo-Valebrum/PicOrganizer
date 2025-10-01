@@ -57,9 +57,10 @@ ProjetoX/
 
 Abra o terminal no VSCode ou PowerShell e execute:
 
-```git clone https://github.com/Grupo-Valebrum/ProjetoX.git```
-```cd ProjetoX```
-
+```bash
+git clone https://github.com/Grupo-Valebrum/ProjetoX.git
+cd ProjetoX
+```
 2. Configurar permissões para execução de scripts
 
 No PowerShell, rode:
