@@ -20,7 +20,7 @@ Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 # ================================================================
-# FUNÇÕES (comentadas como se eu mesmo as tivesse escrito)
+# FUNÇÕES
 # ================================================================
 
 # ------------------------------------------------
