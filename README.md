@@ -34,5 +34,55 @@
 - Sistema operacional: Windows (usa `System.Windows.Forms` e `System.Drawing`)  
 - Permissão para executar scripts:
 
-```powershell
+## 🗂 Estrutura do Projeto
+ProjetoX/
+├── ProjetoX.ps1        # Script principal do organizador de imagens EXIF
+├── LICENSE             # Arquivo da Licença MIT
+├── README.md           # Documentação e instruções do projeto
+└── CHANGELOG.md        # Histórico de versões e alterações
+
+
+## Descrição dos arquivos:
+
+!Arquivo	Função
+!ProjetoX.ps1	Script principal que organiza, renomeia e gera logs das imagens.
+!LICENSE	Licença MIT para o projeto.
+!README.md	Documentação completa com instruções de uso, funcionalidades e setup.
+!CHANGELOG.md	Histórico de alterações e melhorias do projeto.
+
+## 🚀 Instalação e Uso
+1. Clonar o repositório
+
+Abra o terminal no VSCode ou PowerShell e execute:
+
+git clone https://github.com/Grupo-Valebrum/ProjetoX.git
+cd ProjetoX
+
+2. Configurar permissões para execução de scripts
+
+No PowerShell, rode:
+
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
+Isso permite que o script seja executado localmente sem restrições.
+
+3. Executar o ProjetoX
+
+No terminal, execute o script principal:
+
+powershell -ExecutionPolicy Bypass -File .\ProjetoX.ps1
+
+4. Passos dentro do programa
+
+Selecionar a pasta de origem com as imagens que deseja organizar.
+
+Selecionar a pasta de destino onde as imagens renomeadas e organizadas serão salvas.
+
+Pré-visualizar as alterações no ListView do programa.
+
+Escolher entre Executar Mudanças ou Cancelar.
+
+Se desejar, marcar a opção para salvar log detalhado das operações.
+
+Imagens sem dados EXIF serão renomeadas para _SEM-DATA_ e incluídas em pastas correspondentes.
