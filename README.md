@@ -1,6 +1,6 @@
-# ![ProjetoX](https://img.shields.io/badge/ProjetoX-EXIF%20Organizer-blue) ProjetoX - Organizador de Imagens EXIF
+# ![ProjetoX](https://img.shields.io/badge/ProjetoX-EXIF%20Organizer-blue) ProjetoX - Organizador de Imagens
 
-**ProjetoX** é um **organizador gráfico de imagens EXIF** desenvolvido em PowerShell. Ele permite **renomear, organizar e gerar logs de suas imagens** com base nos metadados EXIF, de forma rápida e segura.
+**ProjetoX** é um **organizador gráfico de imagens** desenvolvido em PowerShell. Ele permite **renomear, organizar, mover entre diretórios e gerar logs de toda essa movimentação** com base nos metadados EXIF, de forma rápida e segura.
 
 ---
 
