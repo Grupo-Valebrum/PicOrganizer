@@ -38,7 +38,7 @@
 ## 🗂 Estrutura do Projeto
 |ProjetoX|/|
 |--------|-|
-|ProjetoX.ps1  |      # Script principal do organizador de imagens EXIF |
+|programa.ps1  |      # Script principal do organizador de imagens EXIF |
 |LICENSE       |      # Arquivo da Licença MIT  |
 |README.md     |      # Documentação e instruções do projeto    |
 |CHANGELOG.md  |      # Histórico de versões e alterações   |
@@ -48,7 +48,7 @@
 
 |Arquivo      | Função                                                                  |
 |-------------|-------------------------------------------------------------------------|
-|ProjetoX.ps1 | Script principal que organiza, renomeia e gera logs das imagens.        |
+|programa.ps1 | Script principal que organiza, renomeia e gera logs das imagens.        |
 |LICENSE      | Licença MIT para o projeto.                                             |
 |README.md    | Documentação completa com instruções de uso, funcionalidades e setup.   |
 |CHANGELOG.md | Histórico de alterações e melhorias do projeto.                         |
@@ -61,7 +61,7 @@ Abra o terminal no VSCode ou PowerShell e execute:
 
 ```bash
 git clone https://github.com/Grupo-Valebrum/ProjetoX.git
-cd ProjetoX
+cd programa
 ```
 2. Configurar permissões para execução de scripts
 
@@ -78,7 +78,7 @@ Isso permite que o script seja executado localmente sem restrições.
 No terminal, execute o script principal:
 
 ```bash
-powershell -ExecutionPolicy Bypass -File .\ProjetoX.ps1
+powershell -ExecutionPolicy Bypass -File .\programa.ps1
 ```
 
 4. Passos dentro do programa
