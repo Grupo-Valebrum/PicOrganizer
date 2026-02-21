@@ -7,6 +7,28 @@ seguindo [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.3.1] – 2026-02-20
+### Adicionado
+- Barra de progresso visual em pré-visualização e execução das mudanças.
+- Painel de status com texto e barra de progresso empilhados (abaixo dos botões).
+- Estatísticas de pré-visualização: total de imagens e quantidade sem data.
+- Progresso em tempo real durante execução: "Executando: N / X imagens...".
+
+### Melhorado
+- **Performance**: leitura de EXIF via `FileStream` elimina lock de arquivos.
+- **Performance**: `previewData` migrado de array para `List[object]` (escalabilidade em diretórios grandes).
+- **UX**: contador de imagens processadas com status dinâmico.
+- Nome de arquivo final: formato `dd-MM-yyyy` (ex.: `10-06-2015.jpg`).
+- Sleep reduzido para 5ms na execução (menor latência em lotes grandes).
+
+### Corrigido
+- Layout responsivo: ListView não sobreponde mais botões ao redimensionar janela.
+- Encoding UTF-8 com BOM garantido para acentuação correta em PowerShell 5.1.
+- Regex de data restrita a EXIF/arquivo (ignora nomes de arquivo como `671667.jpg`).
+
+### Removido
+- Prioridade de data no nome do arquivo (agora exclusivamente EXIF/arquivo).
+
 ## [0.3.1] – 2025-10-01
 ### Alterado
 - Renomeação do script de `ProjetoX` para `programa.ps1`.
