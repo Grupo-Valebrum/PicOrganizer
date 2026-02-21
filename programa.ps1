@@ -1,7 +1,7 @@
 ﻿# ProjetoX - Organizador de Imagens por EXIF
-# Autor: Nelson Brum
-# Colaborador: Jonathas
-# Versão: 0.3.1
+# Idealizador: Nelson Brum
+# Desenvolvedor: Jonathas Cunha
+# Versão: 0.3.2
 # Data: 2025-10-01
 #
 # Observação: este script usa Windows Forms, rode em Windows PowerShell ou PowerShell 7+ (Windows).
