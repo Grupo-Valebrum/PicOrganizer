@@ -1,6 +1,6 @@
-# ![ProjetoX](https://img.shields.io/badge/ProjetoX-EXIF%20Organizer-blue) ProjetoX - Organizador de Imagens
+# ![PicOrganizer](https://img.shields.io/badge/ProjetoX-EXIF%20Organizer-blue) PicOrganizer - Organizador de Imagens
 
-**ProjetoX** é um **organizador gráfico de imagens** desenvolvido em PowerShell. Ele permite **renomear, organizar, mover entre diretórios e gerar logs de toda essa movimentação** com base nos metadados EXIF, de forma rápida e segura.
+**PicOrganizer** é um **organizador gráfico de imagens** desenvolvido em PowerShell. Ele permite **renomear, organizar, mover entre diretórios e gerar logs de toda essa movimentação** com base nos metadados EXIF, de forma rápida e segura.
 
 ---
 
@@ -37,7 +37,7 @@
 
 ---
 ## 🗂 Estrutura do Projeto
-|ProjetoX|/|
+|PicOrganizer|/|
 |--------|-|
 |programa.ps1  |      # Script principal do organizador de imagens EXIF |
 |LICENSE       |      # Arquivo da Licença MIT  |
@@ -75,7 +75,7 @@ powershell Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 Isso permite que o script seja executado localmente sem restrições.
 
-3. Executar o ProjetoX
+3. Executar o PicOrganizer
 
 No terminal, execute o script principal:
 
