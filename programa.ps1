@@ -1,4 +1,4 @@
-﻿# ProjetoX - Organizador de Imagens por EXIF
+﻿# PicOrganizer - Organizador de Imagens por EXIF
 # Idealizador: Nelson Brum
 # Desenvolvedor: Jonathas Cunha
 # Versão: 0.3.2
@@ -186,7 +186,7 @@ $script:cancelRequested = $false
 # - ListView que ocupa o restante (Dock = Fill)
 # ================================================================
 $form = New-Object System.Windows.Forms.Form
-$form.Text = "ProjetoX - Organizador de Imagens"
+$form.Text = "PicOrganizer - Organizador de Imagens"
 $form.Size = New-Object System.Drawing.Size(900, 520)
 $form.MinimumSize = New-Object System.Drawing.Size(900, 520)
 $form.StartPosition = "CenterScreen"
